@@ -1,16 +1,28 @@
-#!/bin/sh
+#!/bin/bash
+if [ "$EUID" -ne 0 ]; then
 echo ""
-read -p "Enter a file or directory name: " FILE
+echo -e "\e[1;31m	¡EJECUTA ESTE SCRIPT COMO SUPERUSUARIO!	\e[0m"
 echo ""
-size = du -s $FILE | cut -f1
-if [ -f FILE ]; then
+exit
+fi
 echo ""
-echo "This is a file"
-echo "$size"
+read -p "	Introduzca el path: " FILE
+size=$(du -s $FILE | cut -f1)
+goodsize=$(echo "scale=2; $size / 1000;" | bc)
+if [ -f $FILE ]; then
 echo ""
-elif [ -d FILE ]; then
-echo "This is a directory"
-echo "$size"
+echo "	Esto es un ARCHIVO,"
+echo "	el cual pesa $size bytes"
+echo "	O $goodsize MB, que es más comodo de leer"
+echo ""
+elif [ -d $FILE ]; then
+echo ""
+echo "	Esto es un DIRECTORIO"
+echo "	el cual pesa $size bytes,"
+echo "	O $goodsize MB, que es más comodo de leer"
+echo ""
 else
-echo "This is something else"
+echo ""
+echo -e "\e[1;31m 	El path introducido no corresponde a nada :( \e[0m"
+echo ""
 fi
