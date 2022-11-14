@@ -6,8 +6,8 @@ if [ "$EUID" -ne 0 ]; then
 exit
 fi
   echo ""
-  read -p " Introduzca el path: " FILE
-  size=$(du - s $FILE | cut - f1)
+  read -p "   Introduzca el path: " FILE
+  size=$(du -s $FILE | cut -f1)
   goodsize=$(echo "scale=2; $size / 1000;" | bc) 
 if [ -f $FILE ]; then
   echo ""
