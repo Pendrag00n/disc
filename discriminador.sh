@@ -12,13 +12,13 @@ fi
 if [ -f $FILE ]; then
   echo ""
   echo "    Esto es un ARCHIVO,"
-  echo "    el cual pesa $size bytes"
+  echo "    el cual pesa $size kilobytes"
   echo "    O $goodsize MB, que es más comodo de leer"
   echo "" 
 elif [ -d $FILE ]; then
   echo ""
   echo "    Esto es un DIRECTORIO"
-  echo "    el cual pesa $size bytes,"
+  echo "    el cual pesa $size kilobytes,"
   echo "    O $goodsize MB, que es más comodo de leer" 
 echo ""
 else
